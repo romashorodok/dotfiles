@@ -23,14 +23,13 @@ function lazy:modules()
     local modules = config .. sep .. 'lua' .. sep .. 'modules'
     local plugins_list = {
         modules .. sep .. 'completion' .. sep .. 'plugins.lua',
+        modules .. sep .. 'lua' .. sep .. 'plugins.lua',
     }
     for _, f in pairs(plugins_list) do
         local _, pos = f:find(modules)
         if pos then
             f = f:sub(pos - 6, #f - 4)
         end
-
-        print(pos)
 
         local plugins = require(f)
         plugins(lazy.add)

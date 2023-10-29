@@ -1,6 +1,5 @@
 local vim = vim
 
-
 local disable_distribution_plugins = function()
 	vim.g.loaded_gzip = 1
 	vim.g.loaded_tar = 1
