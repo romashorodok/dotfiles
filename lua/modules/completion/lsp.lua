@@ -1,6 +1,6 @@
 local lsp = {}
 
-local lspconfig = require'lspconfig'
+local lspconfig = require 'lspconfig'
 local mason_lspconfig = require 'mason-lspconfig'
 local configs = require 'lspconfig/configs'
 
@@ -113,25 +113,25 @@ local function default_handlers()
         }
     }
 
-    lspconfig.eslint.setup {
-        capabilities = capabilities,
-        root_dir = require 'lspconfig/util'.root_pattern(
-        '.eslintrc',
-        '.eslintrc.js',
-        '.eslintrc.cjs',
-        '.eslintrc.yaml',
-        '.eslintrc.yml',
-        '.eslintrc.json',
-        'package.json',
-        '.git'
-        ),
-        on_attach = function(_, bufnr)
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                buffer = bufnr,
-                command = "EslintFixAll",
-            })
-        end,
-    }
+    -- lspconfig.eslint.setup {
+    --     capabilities = capabilities,
+    --     root_dir = require 'lspconfig/util'.root_pattern(
+    --     '.eslintrc',
+    --     '.eslintrc.js',
+    --     '.eslintrc.cjs',
+    --     '.eslintrc.yaml',
+    --     '.eslintrc.yml',
+    --     '.eslintrc.json',
+    --     'package.json',
+    --     '.git'
+    --     ),
+    --     on_attach = function(_, bufnr)
+    --         vim.api.nvim_create_autocmd("BufWritePre", {
+    --             buffer = bufnr,
+    --             command = "EslintFixAll",
+    --         })
+    --     end,
+    -- }
 
     lspconfig.tsserver.setup({
         capabilities = capabilities,
@@ -166,6 +166,22 @@ local function default_handlers()
         settings = { filetypes = { 'html', 'twig', 'hbs' } },
     })
 
+    lspconfig.svelte.setup({
+        capabilities = capabilities,
+        on_attach = default_on_attach,
+    })
+
+    -- TODO: not works
+    -- lspconfig.docker_compose_language_service.setup({
+    --     capabilities = capabilities,
+    --     on_attach = default_on_attach,
+    --     settings = { filetypes = { 'yaml.docker-compose' }, },
+    -- })
+
+    lspconfig.dockerls.setup({
+        capabilities = capabilities,
+        on_attach = default_on_attach,
+    })
 end
 
 local function ensure_installed()
@@ -177,18 +193,21 @@ local function ensure_installed()
             'tsserver',
             'eslint',
             'efm',
+            'svelte',
+            'docker_compose_language_service',
+            'dockerls',
         }
     }
 end
 
 function lsp.setup()
-    require'mason'.setup()
-    require'mason-lspconfig'.setup()
+    require 'mason'.setup()
+    require 'mason-lspconfig'.setup()
     ensure_installed()
     default_handlers()
 end
 
-function lsp.setup_handlers (servers, on_attach)
+function lsp.setup_handlers(servers, on_attach)
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
@@ -200,7 +219,7 @@ function lsp.setup_handlers (servers, on_attach)
         function(server_name)
             lspconfig[server_name].setup {
                 capabilities = capabilities,
-                on_attach = function (client, bufnr)
+                on_attach = function(client, bufnr)
                     default_on_attach(client, bufnr)
                     on_attach(client, bufnr)
                 end,

@@ -1,18 +1,18 @@
 local lazy = {}
 lazy.__index = lazy
-local global = require'core.global'
+local global = require 'core.global'
 local sep = global.path_sep
 local config = global.vim_path
 local win = global.is_windows
 
 function lazy.add(repo)
-  if not lazy.plug then
-    lazy.plug = {}
-  end
-  if repo.lazy == nil then
-    repo.lazy = true
-  end
-  table.insert(lazy.plug, repo)
+    if not lazy.plug then
+        lazy.plug = {}
+    end
+    if repo.lazy == nil then
+        repo.lazy = true
+    end
+    table.insert(lazy.plug, repo)
 end
 
 function lazy:modules()
@@ -24,6 +24,7 @@ function lazy:modules()
     local plugins_list = {
         modules .. sep .. 'completion' .. sep .. 'plugins.lua',
         modules .. sep .. 'lua' .. sep .. 'plugins.lua',
+        modules .. sep .. 'tree-sitter' .. sep .. 'plugins.lua',
     }
     for _, f in pairs(plugins_list) do
         local _, pos = f:find(modules)

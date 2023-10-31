@@ -22,6 +22,8 @@ local filetypes = {
   'sql',
   'vim',
   'sh',
+  'svelte',
+  'dockerfile',
 }
 
 return function(use)
@@ -53,5 +55,12 @@ return function(use)
             'hrsh7th/cmp-nvim-lsp',
             'rafamadriz/friendly-snippets',
         },
+    })
+
+    use({
+        'numtostr/comment.nvim',
+        lazy = false,
+        module = false,
+        opts = {},
     })
 end
