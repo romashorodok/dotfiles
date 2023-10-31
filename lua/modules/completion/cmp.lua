@@ -1,12 +1,13 @@
 local config = {}
 
 local cmp = require'cmp'
-local luasnip = require'luasnip' 
+local luasnip = require'luasnip'
 
 function config.setup()
     require('luasnip.loaders.from_vscode').lazy_load()
     luasnip.config.setup {}
-    
+
+    ---@diagnostic disable-next-line
     cmp.setup {
         snippet = {
             expand = function(args)

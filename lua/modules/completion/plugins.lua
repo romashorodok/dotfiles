@@ -1,7 +1,37 @@
+local filetypes = {
+  'html',
+  'css',
+  'javascript',
+  'java',
+  'javascriptreact',
+  'vue',
+  'typescript',
+  'typescriptreact',
+  'go',
+  'lua',
+  'cpp',
+  'c',
+  'markdown',
+  'makefile',
+  'python',
+  'bash',
+  'sh',
+  'php',
+  'yaml',
+  'json',
+  'sql',
+  'vim',
+  'sh',
+}
+
 return function(use)
     use({
         'neovim/nvim-lspconfig',
         lazy = true,
+        config = function ()
+            require('modules.completion.lsp').setup()
+        end,
+        ft = filetypes,
         dependencies = {
             'williamboman/mason.nvim',
             'williamboman/mason-lspconfig.nvim',
@@ -12,8 +42,9 @@ return function(use)
     use({
         'hrsh7th/nvim-cmp',
         module = false,
-        event = { 'InsertEnter', 'CmdlineEnter' }, 
-        config = function() 
+        lazy = true,
+        event = { 'InsertEnter', 'CmdlineEnter' },
+        config = function()
             require'modules.completion.cmp'.setup()
         end,
         dependencies = {

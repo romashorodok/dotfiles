@@ -3,7 +3,7 @@ lazy.__index = lazy
 local global = require'core.global'
 local sep = global.path_sep
 local config = global.vim_path
-
+local win = global.is_windows
 
 function lazy.add(repo)
   if not lazy.plug then
@@ -36,7 +36,7 @@ function lazy:modules()
     end
 end
 
-function lazy:bootstrap() 
+function lazy:bootstrap()
     local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
     if not vim.loop.fs_stat(lazypath) then
@@ -45,7 +45,7 @@ function lazy:bootstrap()
             "clone",
             "--filter=blob:none",
             "https://github.com/folke/lazy.nvim.git",
-            "--branch=stable", 
+            "--branch=stable",
             lazypath,
         })
     end
