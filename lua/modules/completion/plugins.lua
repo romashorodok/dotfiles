@@ -1,36 +1,36 @@
 local filetypes = {
-  'html',
-  'css',
-  'javascript',
-  'java',
-  'javascriptreact',
-  'vue',
-  'typescript',
-  'typescriptreact',
-  'go',
-  'lua',
-  'cpp',
-  'c',
-  'markdown',
-  'makefile',
-  'python',
-  'bash',
-  'sh',
-  'php',
-  'yaml',
-  'json',
-  'sql',
-  'vim',
-  'sh',
-  'svelte',
-  'dockerfile',
+    'html',
+    'css',
+    'javascript',
+    'java',
+    'javascriptreact',
+    'vue',
+    'typescript',
+    'typescriptreact',
+    'go',
+    'lua',
+    'cpp',
+    'c',
+    'markdown',
+    'makefile',
+    'python',
+    'bash',
+    'sh',
+    'php',
+    'yaml',
+    'json',
+    'sql',
+    'vim',
+    'sh',
+    'svelte',
+    'dockerfile',
 }
 
 return function(use)
     use({
         'neovim/nvim-lspconfig',
         lazy = true,
-        config = function ()
+        config = function()
             require('modules.completion.lsp').setup()
         end,
         ft = filetypes,
@@ -47,7 +47,7 @@ return function(use)
         lazy = true,
         event = { 'InsertEnter', 'CmdlineEnter' },
         config = function()
-            require'modules.completion.cmp'.setup()
+            require 'modules.completion.cmp'.setup()
         end,
         dependencies = {
             'L3MON4D3/LuaSnip',
@@ -57,10 +57,33 @@ return function(use)
         },
     })
 
-    use({
+    use {
         'numtostr/comment.nvim',
         lazy = false,
         module = false,
         opts = {},
-    })
+    }
+
+    use {
+        'mbbill/undotree',
+        lazy = false,
+        module = false,
+        config = function()
+            vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+        end
+    }
+
+    use {
+        "windwp/nvim-autopairs",
+        lazy = false,
+        wants = "nvim-treesitter",
+        module = { "nvim-autopairs.completion.cmp", "nvim-autopairs" },
+        config = function()
+            local npairs = require "nvim-autopairs"
+            npairs.setup {
+                check_ts = true,
+            }
+            npairs.add_rules(require "nvim-autopairs.rules.endwise-lua")
+        end
+    }
 end
