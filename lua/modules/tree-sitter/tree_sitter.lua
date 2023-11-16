@@ -3,12 +3,12 @@ local tree_sitter = {}
 local function setup()
     require('nvim-treesitter.configs').setup {
         ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc',
-            'vim', 'bash', 'svelte' },
+            'vim', 'bash', 'svelte', 'graphql', },
 
         auto_install = true,
 
         highlight = { enable = true },
-        indent = { enable = true },
+        indent = { enable = false },
         incremental_selection = {
             enable = true,
             keymaps = {

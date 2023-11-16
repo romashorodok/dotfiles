@@ -24,12 +24,14 @@ local filetypes = {
     'sh',
     'svelte',
     'dockerfile',
+    'graphgql',
 }
 
 return function(use)
     use({
         'neovim/nvim-lspconfig',
-        lazy = true,
+        lazy = false,
+        module = false,
         config = function()
             require('modules.completion.lsp').setup()
         end,

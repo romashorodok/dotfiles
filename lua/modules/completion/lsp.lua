@@ -13,11 +13,12 @@ local function default_on_attach(_, bufnr)
         vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
     end
 
-    nmap('<leader>rn', vim.lsp.buf.rename)
+    nmap('<leader>cr', vim.lsp.buf.rename)
     nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
     nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
     nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
     nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+    nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
 end
 
 local function default_handlers()
@@ -182,6 +183,11 @@ local function default_handlers()
         capabilities = capabilities,
         on_attach = default_on_attach,
     })
+
+    lspconfig.graphql.setup({
+        capabilities = capabilities,
+        on_attach = default_on_attach,
+    })
 end
 
 local function ensure_installed()
@@ -196,6 +202,7 @@ local function ensure_installed()
             'svelte',
             'docker_compose_language_service',
             'dockerls',
+            'graphql',
         }
     }
 end
