@@ -44,6 +44,8 @@ local function default_handlers()
         on_attach = default_on_attach,
     }
 
+    lspconfig.rnix.setup {}
+
     -- https://github.com/golang/tools/blob/master/gopls/doc/analyzers.md
     lspconfig['gopls'].setup {
         capabilities = capabilities,
@@ -98,21 +100,21 @@ local function default_handlers()
         },
     }
 
-    lspconfig.efm.setup {
-        capabilities = capabilities,
-        on_attach = default_on_attach,
-        init_options = { documentFormatting = true },
-        settings = {
-            languages = {
-                css = {
-                    { formatCommand = 'prettier "${INPUT}"', formatStdin = true, }
-                },
-                scss = {
-                    { formatCommand = 'prettier "${INPUT}"', formatStdin = true, }
-                }
-            }
-        }
-    }
+    -- lspconfig.efm.setup {
+    --     capabilities = capabilities,
+    --     on_attach = default_on_attach,
+    --     init_options = { documentFormatting = true },
+    --     settings = {
+    --         languages = {
+    --             css = {
+    --                 { formatCommand = 'prettier "${INPUT}"', formatStdin = true, }
+    --             },
+    --             scss = {
+    --                 { formatCommand = 'prettier "${INPUT}"', formatStdin = true, }
+    --             }
+    --         }
+    --     }
+    -- }
 
     -- lspconfig.eslint.setup {
     --     capabilities = capabilities,
@@ -178,6 +180,12 @@ local function default_handlers()
     --     on_attach = default_on_attach,
     --     settings = { filetypes = { 'yaml.docker-compose' }, },
     -- })
+
+    lspconfig.docker_compose_language_service.setup {
+        capabilities = capabilities,
+        on_attach = default_on_attach,
+        -- settings = {  },
+    }
 
     lspconfig.dockerls.setup({
         capabilities = capabilities,

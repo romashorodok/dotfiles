@@ -8,7 +8,7 @@ local function setup()
         auto_install = true,
 
         highlight = { enable = true },
-        indent = { enable = false },
+        indent = { enable = true },
         incremental_selection = {
             enable = true,
             keymaps = {

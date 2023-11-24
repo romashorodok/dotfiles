@@ -26,6 +26,7 @@ function lazy:modules()
         modules .. sep .. 'lua' .. sep .. 'plugins.lua',
         modules .. sep .. 'tree-sitter' .. sep .. 'plugins.lua',
         modules .. sep .. 'telescope' .. sep .. 'plugins.lua',
+        modules .. sep .. 'git' .. sep .. 'plugins.lua',
     }
     for _, f in pairs(plugins_list) do
         local _, pos = f:find(modules)

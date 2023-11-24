@@ -1,4 +1,5 @@
 return function(use)
+    -- :InspectTree
     use({
         'nvim-treesitter/nvim-treesitter',
         config = function()
@@ -6,10 +7,19 @@ return function(use)
         end,
         dependencies = {
             'nvim-treesitter/nvim-treesitter-textobjects',
+
         },
         build = ':TSUpdate',
         lazy = false,
     })
+
+    use {
+        'nvim-treesitter/nvim-treesitter-context',
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+        },
+        lazy  = false,
+    }
 
     use {
         'dasupradyumna/midnight.nvim',
