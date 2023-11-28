@@ -33,6 +33,7 @@ return function(use)
     vim.cmd("autocmd BufEnter *.ts :setlocal tabstop=2 shiftwidth=2 expandtab")
     vim.cmd("autocmd BufEnter *.jsx :setlocal tabstop=2 shiftwidth=2 expandtab")
     vim.cmd("autocmd BufEnter *.tsx :setlocal tabstop=2 shiftwidth=2 expandtab")
+    vim.cmd("autocmd BufEnter *.svelte :setlocal tabstop=2 shiftwidth=2 expandtab")
 
     use({
         'neovim/nvim-lspconfig',
