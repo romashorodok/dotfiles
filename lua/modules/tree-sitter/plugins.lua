@@ -2,6 +2,7 @@ return function(use)
     -- :InspectTree
     use {
         'nvim-treesitter/nvim-treesitter',
+        ignore_install = { "comment" },
         config = function()
             require 'modules.tree-sitter.tree_sitter'.setup()
         end,
