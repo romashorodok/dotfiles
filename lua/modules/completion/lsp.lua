@@ -18,7 +18,10 @@ local function default_on_attach(_, bufnr)
     nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
     nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
     nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-    nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+
+    local fzf = require 'fzf-lua'
+    nmap('gd', fzf.lsp_definitions, '[G]oto [D]efinition')
+    -- nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
 end
 
 local function default_handlers()
