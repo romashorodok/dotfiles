@@ -26,6 +26,7 @@ local filetypes = {
     'dockerfile',
     'graphgql',
     'nix',
+    'pyrex',
 }
 
 return function(use)
@@ -36,6 +37,11 @@ return function(use)
     vim.cmd("autocmd BufEnter *.svelte :setlocal tabstop=2 shiftwidth=2 expandtab")
     vim.cmd("autocmd BufEnter *.proto :setlocal tabstop=2 shiftwidth=2 expandtab")
     vim.cmd("autocmd BufEnter *.nix :setlocal tabstop=2 shiftwidth=2 expandtab")
+    vim.cmd("autocmd BufEnter *.c :setlocal tabstop=2 shiftwidth=2 expandtab")
+
+    vim.cmd("set listchars=tab:⇤–⇥,space:·,trail:·,precedes:⇠,extends:⇢,nbsp:×")
+    vim.cmd("autocmd BufEnter *.sql :set list")
+
 
     use({
         'neovim/nvim-lspconfig',

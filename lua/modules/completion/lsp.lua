@@ -177,6 +177,11 @@ local function default_handlers()
         on_attach = default_on_attach,
     })
 
+    lspconfig.pyright.setup {
+        capabilities = capabilities,
+        on_attach = default_on_attach,
+    }
+
     -- TODO: not works
     -- lspconfig.docker_compose_language_service.setup({
     --     capabilities = capabilities,
@@ -199,6 +204,26 @@ local function default_handlers()
         capabilities = capabilities,
         on_attach = default_on_attach,
     })
+
+    lspconfig.ccls.setup {
+        capabilities = capabilities,
+        on_attach = default_on_attach,
+        init_options = {
+            -- https://github.com/MaskRay/ccls/wiki/Customization#compilationdatabasedirectory
+            compilationDatabaseDirectory = "build",
+            index = {
+                threads = 0,
+            },
+            clang = {
+                excludeArgs = { "-frounding-math" },
+            },
+        }
+    }
+
+    lspconfig.zls.setup {
+        capabilities = capabilities,
+        on_attach = default_on_attach,
+    }
 end
 
 local function ensure_installed()
@@ -214,6 +239,7 @@ local function ensure_installed()
             'docker_compose_language_service',
             'dockerls',
             'graphql',
+            'pyright',
         }
     }
 end
