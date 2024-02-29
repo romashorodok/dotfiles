@@ -229,16 +229,16 @@ end
 local function ensure_installed()
     mason_lspconfig.setup {
         ensure_installed = {
-            'cssls',
-            'html',
-            'jsonls',
-            'tsserver',
-            'eslint',
-            'efm',
-            'svelte',
-            'docker_compose_language_service',
-            'dockerls',
-            'graphql',
+            -- 'cssls',
+            -- 'html',
+            -- 'jsonls',
+            -- 'tsserver',
+            -- 'eslint',
+            -- 'efm',
+            -- 'svelte',
+            -- 'docker_compose_language_service',
+            -- 'dockerls',
+            -- 'graphql',
             'pyright',
         }
     }
