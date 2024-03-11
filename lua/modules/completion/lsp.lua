@@ -210,7 +210,7 @@ local function default_handlers()
         on_attach = default_on_attach,
         init_options = {
             -- https://github.com/MaskRay/ccls/wiki/Customization#compilationdatabasedirectory
-            compilationDatabaseDirectory = "build",
+            compilationDatabaseDirectory = "builddir",
             index = {
                 threads = 0,
             },
