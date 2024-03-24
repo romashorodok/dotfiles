@@ -22,3 +22,20 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 
+local transparent_highlights = {
+    'Normal',
+    'NormalNC',
+    'LineNr',
+    'Folded',
+    'NonText',
+    'SpecialKey',
+    'VertSplit',
+    'SignColumn',
+    'EndOfBuffer',
+    'TablineFill',
+}
+
+
+for _, hl in ipairs(transparent_highlights) do
+    vim.cmd.highlight(hl .. ' guibg=NONE ctermbg=NONE')
+end

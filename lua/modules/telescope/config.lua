@@ -28,7 +28,7 @@ function config.setupFzf()
 
     local root = string.gsub(vim.fn.system("git rev-parse --show-toplevel"), "\n", "")
 
-    vim.keymap.set('n', '<leader>/', function() fzf.live_grep { cwd = root } end)
+    vim.keymap.set('n', '<leader>/', function() fzf.live_grep { cwd = root, cmd = "git grep --line-number --column --color=always" } end)
     vim.keymap.set('n', '<leader>#', function() fzf.grep_cword { cwd = root } end)
     vim.keymap.set('n', '<leader><', function() fzf.oldfiles { cwd = root } end)
 

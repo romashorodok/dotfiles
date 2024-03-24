@@ -11,7 +11,6 @@ return function(use)
             "nvim-lua/plenary.nvim",
         },
     }
-
     use
     {
         'akinsho/git-conflict.nvim',

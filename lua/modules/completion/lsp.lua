@@ -220,6 +220,17 @@ local function default_handlers()
         }
     }
 
+    -- rustup component add rust-analyzer
+    lspconfig.rust_analyzer.setup {
+        settings = {
+            ['rust-analyzer'] = {
+                diagnostics = {
+                    enable = true,
+                }
+            }
+        }
+    }
+
     lspconfig.zls.setup {
         capabilities = capabilities,
         on_attach = default_on_attach,
