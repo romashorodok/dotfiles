@@ -43,6 +43,8 @@ return function(use)
     vim.cmd("set listchars=tab:⇤–⇥,space:·,trail:·,precedes:⇠,extends:⇢,nbsp:×")
     vim.cmd("autocmd BufEnter *.sql :set list")
 
+    vim.g.zig_fmt_autosave = 0
+
 
     use({
         'neovim/nvim-lspconfig',

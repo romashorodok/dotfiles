@@ -14,13 +14,13 @@ return function(use)
         lazy = false,
     }
 
-    use {
-        'nvim-treesitter/nvim-treesitter-context',
-        dependencies = {
-            'nvim-treesitter/nvim-treesitter',
-        },
-        lazy = false,
-    }
+    -- use {
+    --     'nvim-treesitter/nvim-treesitter-context',
+    --     dependencies = {
+    --         'nvim-treesitter/nvim-treesitter',
+    --     },
+    --     lazy = false,
+    -- }
 
     -- use {
     --     "folke/noice.nvim",
@@ -51,13 +51,13 @@ return function(use)
     --     }
     -- }
 
-    use {
-        'dasupradyumna/midnight.nvim',
-        lazy = false,
-        priority = 1000,
-        config = function()
-            require('midnight')
-            vim.cmd.colorscheme 'midnight'
-        end
-    }
+    -- use {
+    --     'dasupradyumna/midnight.nvim',
+    --     lazy = false,
+    --     priority = 1000,
+    --     config = function()
+    --         require('midnight')
+    --         vim.cmd.colorscheme 'midnight'
+    --     end
+    -- }
 end
