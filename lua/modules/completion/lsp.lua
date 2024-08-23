@@ -109,12 +109,12 @@ local function default_handlers()
     --     init_options = { documentFormatting = true },
     --     settings = {
     --         languages = {
-    --             css = {
-    --                 { formatCommand = 'prettier "${INPUT}"', formatStdin = true, }
-    --             },
-    --             scss = {
-    --                 { formatCommand = 'prettier "${INPUT}"', formatStdin = true, }
-    --             }
+    --             -- css = {
+    --             --     { formatCommand = 'prettier "${INPUT}"', formatStdin = true, }
+    --             -- },
+    --             -- scss = {
+    --             --     { formatCommand = 'prettier "${INPUT}"', formatStdin = true, }
+    --             -- }
     --         }
     --     }
     -- }
@@ -177,9 +177,63 @@ local function default_handlers()
         on_attach = default_on_attach,
     })
 
+    on_attach = function(client, bufnr)
+    end
+
+
     lspconfig.pyright.setup {
         capabilities = capabilities,
-        on_attach = default_on_attach,
+        on_attach = function(client, bufnr)
+            default_on_attach(client, bufnr)
+        end,
+        settings = {
+            -- python = {
+            --     analysis = {
+            --         -- Ignore all files for analysis to exclusively use Ruff for linting
+            --         ignore = { '*' },
+            --     },
+            -- },
+            pyright = {
+                -- Using Ruff's import organizer
+                disableOrganizeImports = true,
+            },
+            basedpyright = {
+                analysis = {
+                    typeCheckingMode = "basic",
+                    autoImportCompletions = true,
+                    diagnosticSeverityOverrides = {
+                        reportUnusedImport = "information",
+                        reportUnusedFunction = "information",
+                        reportUnusedVariable = "information",
+                        reportGeneralTypeIssues = "none",
+                        reportOptionalMemberAccess = "none",
+                        reportOptionalSubscript = "none",
+                        reportPrivateImportUsage = "none",
+                    },
+                },
+            }
+        }
+    }
+
+    require('lspconfig').ruff_lsp.setup {
+        capabilities = capabilities,
+        on_attach = function(client, bufnr)
+            default_on_attach(client, bufnr)
+            client.server_capabilities.hoverProvider = false
+        end,
+        settings = { 
+            python = {
+                analysis = {
+                    -- Ignore all files for analysis to exclusively use Ruff for linting
+                    ignore = { '*' },
+                },
+            },
+        },
+        init_options = {
+            settings = {
+                args = {},
+            }
+        }
     }
 
     -- TODO: not works
@@ -237,6 +291,12 @@ local function default_handlers()
         capabilities = capabilities,
         on_attach = default_on_attach,
     }
+
+    lspconfig.volar.setup {
+        capabilities = capabilities,
+        on_attach = default_on_attach,
+        filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' }
+    }
 end
 
 local function ensure_installed()
@@ -247,7 +307,7 @@ local function ensure_installed()
             -- 'jsonls',
             -- 'tsserver',
             -- 'eslint',
-            -- 'efm',
+            'efm',
             -- 'svelte',
             -- 'docker_compose_language_service',
             -- 'dockerls',

@@ -27,6 +27,7 @@ local filetypes = {
     'graphgql',
     'nix',
     'pyrex',
+    'rust',
 }
 
 return function(use)

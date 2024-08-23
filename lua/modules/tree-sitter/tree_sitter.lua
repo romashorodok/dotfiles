@@ -3,7 +3,7 @@ local tree_sitter = {}
 local function setup()
     require('nvim-treesitter.configs').setup {
         ensure_installed = {
-            'python',
+            'python', 'rust',
             -- 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc',
             -- 'vim', 'bash', 'svelte', 'graphql', 'markdown', "markdown_inline", "regex", "css", "scss", 'proto', "zig"
         },
