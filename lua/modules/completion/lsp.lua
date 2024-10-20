@@ -139,7 +139,7 @@ local function default_handlers()
     --     end,
     -- }
 
-    lspconfig.tsserver.setup({
+    lspconfig.ts_ls.setup({
         capabilities = capabilities,
         on_attach = default_on_attach,
     })
@@ -178,8 +178,8 @@ local function default_handlers()
     })
 
     on_attach = function(client, bufnr)
-    end
 
+    end
 
     lspconfig.pyright.setup {
         capabilities = capabilities,
@@ -195,25 +195,26 @@ local function default_handlers()
             -- },
             pyright = {
                 -- Using Ruff's import organizer
-                disableOrganizeImports = true,
+                -- disableOrganizeImports = true,
             },
-            basedpyright = {
-                analysis = {
-                    typeCheckingMode = "basic",
-                    autoImportCompletions = true,
-                    diagnosticSeverityOverrides = {
-                        reportUnusedImport = "information",
-                        reportUnusedFunction = "information",
-                        reportUnusedVariable = "information",
-                        reportGeneralTypeIssues = "none",
-                        reportOptionalMemberAccess = "none",
-                        reportOptionalSubscript = "none",
-                        reportPrivateImportUsage = "none",
-                    },
-                },
-            }
+            -- basedpyright = {
+            --     analysis = {
+            --         typeCheckingMode = "basic",
+            --         autoImportCompletions = true,
+            --         diagnosticSeverityOverrides = {
+            --             reportUnusedImport = "information",
+            --             reportUnusedFunction = "information",
+            --             reportUnusedVariable = "information",
+            --             reportGeneralTypeIssues = "none",
+            --             reportOptionalMemberAccess = "none",
+            --             reportOptionalSubscript = "none",
+            --             reportPrivateImportUsage = "none",
+            --         },
+            --     },
+            -- }
         }
     }
+
 
     require('lspconfig').ruff_lsp.setup {
         capabilities = capabilities,
@@ -221,20 +222,38 @@ local function default_handlers()
             default_on_attach(client, bufnr)
             client.server_capabilities.hoverProvider = false
         end,
-        settings = { 
-            python = {
-                analysis = {
-                    -- Ignore all files for analysis to exclusively use Ruff for linting
-                    ignore = { '*' },
-                },
-            },
-        },
+        -- settings = {
+        -- },
         init_options = {
             settings = {
-                args = {},
+                logLevel = 'debug',
+                args = {
+                },
+
             }
         }
     }
+
+
+    lspconfig.ruby_lsp.setup {
+        capabilities = capabilities,
+        on_attach = default_on_attach,
+    }
+
+
+    -- lspconfig.solargraph.setup {
+    --     capabilities = capabilities,
+    --     on_attach = default_on_attach,
+    --     cmd = { "bundle", "exec", "solargraph", "stdio" },
+    --     init_options = {
+    --         completion = true,
+    --         diagnostic = true,
+    --         folding = true,
+    --         references = true,
+    --         rename = true,
+    --         symbols = true
+    --     },
+    -- }
 
     -- TODO: not works
     -- lspconfig.docker_compose_language_service.setup({
@@ -275,14 +294,26 @@ local function default_handlers()
     }
 
     -- rustup component add rust-analyzer
+    -- rustup component add rust-analyzer
     lspconfig.rust_analyzer.setup {
         capabilities = capabilities,
         on_attach = default_on_attach,
         settings = {
             ['rust-analyzer'] = {
-                diagnostics = {
-                    enable = true,
-                }
+                -- imports = {
+                --     granularity = {
+                --         group = "module",
+                --     },
+                --     prefix = "self",
+                -- },
+                -- cargo = {
+                --     buildScripts = {
+                --         enable = true,
+                --     },
+                -- },
+                -- procMacro = {
+                --     enable = true
+                -- },
             }
         }
     }
@@ -307,12 +338,13 @@ local function ensure_installed()
             -- 'jsonls',
             -- 'tsserver',
             -- 'eslint',
-            'efm',
+            -- 'efm',
             -- 'svelte',
-            -- 'docker_compose_language_service',
-            -- 'dockerls',
+            'docker_compose_language_service',
+            'dockerls',
             -- 'graphql',
             'pyright',
+            -- 'solargraph',
         }
     }
 end
