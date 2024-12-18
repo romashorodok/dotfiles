@@ -49,6 +49,7 @@ local function default_handlers()
 
     lspconfig.rnix.setup {}
 
+
     -- https://github.com/golang/tools/blob/master/gopls/doc/analyzers.md
     lspconfig['gopls'].setup {
         capabilities = capabilities,
