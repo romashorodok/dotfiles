@@ -14,7 +14,7 @@ end
 
 function config.setup()
     require'neodev'.setup()
-    require'modules.completion.lsp'.setup_handlers(servers, on_attach)
+    -- require'modules.completion.lsp'.setup_handlers(servers, on_attach)
 end
 
 return config

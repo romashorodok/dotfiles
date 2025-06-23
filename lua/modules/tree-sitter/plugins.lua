@@ -1,18 +1,19 @@
 return function(use)
-    -- :InspectTree
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        ignore_install = { "comment" },
-        config = function()
-            require 'modules.tree-sitter.tree_sitter'.setup()
-        end,
-        dependencies = {
-            'nvim-treesitter/nvim-treesitter-textobjects',
 
-        },
-        build = ':TSUpdate',
-        lazy = false,
-    }
+    -- :InspectTree
+    -- use {
+    --     'nvim-treesitter/nvim-treesitter',
+    --     ignore_install = { "comment" },
+    --     config = function()
+    --         require 'modules.tree-sitter.tree_sitter'.setup()
+    --     end,
+    --     dependencies = {
+    --         'nvim-treesitter/nvim-treesitter-textobjects',
+    --
+    --     },
+    --     build = ':TSUpdate',
+    --     lazy = false,
+    -- }
 
     -- use {
     --     'nvim-treesitter/nvim-treesitter-context',
@@ -49,15 +50,5 @@ return function(use)
     --     dependencies = {
     --         "MunifTanjim/nui.nvim",
     --     }
-    -- }
-
-    -- use {
-    --     'dasupradyumna/midnight.nvim',
-    --     lazy = false,
-    --     priority = 1000,
-    --     config = function()
-    --         require('midnight')
-    --         vim.cmd.colorscheme 'midnight'
-    --     end
     -- }
 end

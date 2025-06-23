@@ -60,7 +60,14 @@ function lazy:bootstrap()
     self:modules()
 
     lz.setup(self.plug, {
-        lockfile = config .. sep .. 'lazy-lock.json'
+        lockfile = config .. sep .. 'lazy-lock.json',
+        opts = {
+            rocks = {
+                enabled = false,
+                hererocks = false
+            }
+        }
+
     })
 end
 

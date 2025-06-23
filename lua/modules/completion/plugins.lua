@@ -46,7 +46,6 @@ return function(use)
 
     vim.g.zig_fmt_autosave = 0
 
-
     use({
         'neovim/nvim-lspconfig',
         lazy = false,
@@ -56,55 +55,30 @@ return function(use)
         end,
         ft = filetypes,
         dependencies = {
-            'williamboman/mason.nvim',
-            'williamboman/mason-lspconfig.nvim',
-            { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+            -- 'williamboman/mason.nvim',
+            -- 'williamboman/mason-lspconfig.nvim',
+            -- { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
         },
     })
 
-    use({
-        'hrsh7th/nvim-cmp',
-        module = false,
-        lazy = true,
-        event = { 'InsertEnter', 'CmdlineEnter' },
-        config = function()
-            require 'modules.completion.cmp'.setup()
-        end,
-        dependencies = {
-            'L3MON4D3/LuaSnip',
-            'saadparwaiz1/cmp_luasnip',
-            'hrsh7th/cmp-nvim-lsp',
-            'rafamadriz/friendly-snippets',
+    vim.keymap.set('n', 'U', '<C-r>', { noremap = true, silent = true })
+
+    -- use {
+    --     'mbbill/undotree',
+    --     lazy = false,
+    --     module = false,
+    --     config = function()
+    --         vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+    --     end
+    -- }
+
+    require 'modules.completion.pairs'.setup()
+    require 'modules.completion.comments'.setup({
+        mappings = {
+            comment = '<leader>c',
+            comment_line = '<leader>c',
+            comment_visual = '<leader>c',
+            textobject = '<leader>c',
         },
     })
-
-    use {
-        'numtostr/comment.nvim',
-        lazy = false,
-        module = false,
-        opts = {},
-    }
-
-    use {
-        'mbbill/undotree',
-        lazy = false,
-        module = false,
-        config = function()
-            vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
-        end
-    }
-
-    use {
-        "windwp/nvim-autopairs",
-        lazy = false,
-        wants = "nvim-treesitter",
-        module = { "nvim-autopairs.completion.cmp", "nvim-autopairs" },
-        config = function()
-            local npairs = require "nvim-autopairs"
-            npairs.setup {
-                check_ts = true,
-            }
-            npairs.add_rules(require "nvim-autopairs.rules.endwise-lua")
-        end
-    }
 end
