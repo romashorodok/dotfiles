@@ -38,12 +38,13 @@ return function(use)
             -- words = { enabled = true },
         },
         keys = {
-            { "<leader>g", function() Snacks.lazygit() end },
+            -- { "<leader>g", function() Snacks.lazygit() end },
             { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
             { "#", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
             { "<leader>f", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
             { "<leader>u", function() Snacks.picker.undo() end, desc = "Undo History" },
         },
+
         init = function()
             vim.api.nvim_create_autocmd("User", {
                 pattern = "VeryLazy",

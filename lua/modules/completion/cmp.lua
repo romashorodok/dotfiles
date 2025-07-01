@@ -277,6 +277,11 @@ MiniCompletion.setup = function(config)
     H.create_default_hl()
 end
 
+--- @param client vim.lsp.Client
+--- @param bufnr integer
+MiniCompletion.lsp_on_attach = function (client, bufnr)
+end
+
 --- Module config
 ---
 --- Default values:
@@ -806,6 +811,9 @@ H.create_autocommands = function(config)
 
     au('ColorScheme', '*', H.create_default_hl, 'Ensure colors')
     au('FileType', 'TelescopePrompt', function() vim.b.minicompletion_disable = true end, 'Disable locally')
+
+    -- To get this I use :set filetype?
+    au('FileType', 'snacks_picker_input', function() vim.b.minicompletion_disable = true end, 'Disable locally')
 end
 
 H.create_default_hl = function()
