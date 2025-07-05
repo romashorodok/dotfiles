@@ -5,8 +5,8 @@ mkdir -p ~/.config/nvim
 rm -rf ~/.config/nvim
 ln -s $(pwd) ~/.config/nvim
 
-rm -rf ~/.zshrc
-ln -s $(pwd)/.zshrc ~/.zshrc
+# rm -rf ~/.zshrc
+# ln -s $(pwd)/.zshrc ~/.zshrc
 
 rm -f ~/.tmux.conf
 ln -s $(pwd)/.tmux.conf ~/.tmux.conf

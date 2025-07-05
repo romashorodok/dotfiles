@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 tmux_sessionizer() {
   local selected selected_name tmux_running
 
