@@ -13,3 +13,6 @@ ln -s $(pwd)/.tmux.conf ~/.tmux.conf
 
 rm -f ~/.projcd.sh
 ln -s $(pwd)/.projcd.sh ~/.projcd.sh
+
+rm -f ~/.projcd.sh
+ln -s $(pwd)/.projcd.fish ~/.projcd.fish

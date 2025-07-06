@@ -1,3 +1,4 @@
+
 function tmux_sessionizer
     set selected_name
     set selected
@@ -153,4 +154,3 @@ function projcd
         end
     end
 end
-
